@@ -8,7 +8,7 @@ class VehicleRegistration{
     cy.visit('https://service.vic.gov.au/find-services/transport-and-driving/registration/check-registration/vehicle')
    }
    
-   setVehicleType=(vehicleType)=>{
+   setVehicleType=(vehicleType)=>{                          //Creation functions for page objects that can cater to multiple data cobminations
     switch (vehicleType) {
         case 'Car/truck':
             this.regoId='rego-number'
@@ -25,17 +25,17 @@ class VehicleRegistration{
     }
   }
 
-  setVehicleRegoNumber=(regoNumber)=>{
+  setVehicleRegoNumber=(regoNumber)=>{                  //Page object functions always have to one thing to support easy maintenance.
       let idPattern =`input#${this.regoId}`
       return cy.get(idPattern).type(regoNumber,{timeout:5*1000})
   }
 
    clickContinueButton=()=>{
-    cy.intercept({
+    cy.intercept({                          //Never use Explicit waits.Instead use URL Routes for unstable long running requests.
         method: 'POST',
         url: '/data/forms/check-registration/vehicle',
       }).as('FindVehicleRego')
-        cy.get('button[type="submit"]').click({timeout:6*1000})//Never use Explicit waits insted use waits on aliases.
+        cy.get('button[type="submit"]').click({timeout:6*1000})  
         cy.wait('@FindVehicleRego')
         
         return vehicleReview;

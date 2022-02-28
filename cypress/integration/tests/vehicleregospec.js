@@ -5,9 +5,10 @@ const vehiclesummaryData= require('../../fixtures/vehiclesummary.json')
 ///<reference types="cypress" /> 
 
 //describe block is used for grouping a suit of test cases specified in respective 'it' blocks
+
 describe('TS01_VehicleRegistrationPage', () => {
     let testdata;
-    beforeEach(() => {
+    beforeEach(() => {          //use these cypress hooks to avoid test repetition.
 
         cy.visit('https://service.vic.gov.au/find-services/transport-and-driving/registration/check-registration')
         cy.fixture('vehicledetails').then((vdata) => {                         //Fixtures are used to drive the testdata from fixtures folder
@@ -32,13 +33,13 @@ describe('TS01_VehicleRegistrationPage', () => {
     it('TC03_FindVehicleRego', () => {
         const vehicleRegistration = regoPage.clickGetStartedButton()
         vehicleRegistration.getFormTitle().should('have.text', 'Enter vehicle details')
-        vehicleRegistration.setVehicleType(testdata.vtype1)                            //The test data can be used in a similar way
+        vehicleRegistration.setVehicleType(testdata.vtype1)                            //Test data loaded from fixtures
         vehicleRegistration.setVehicleRegoNumber(testdata.vtype1_regoNumber)
         const vehicleReview = vehicleRegistration.clickContinueButton()
         vehicleReview.getURL().should('contain', '/check-registration/vehicle/Review')
     })
 
-    vehiclesummaryData.forEach((jsonRecord) => {                                        //Loop through the json file to test different combinations of data.
+    vehiclesummaryData.forEach((jsonRecord) => {                                        //Example for another variation of fixtures that provides multiple data combinations.
         it('TC04_FindVehicleRego+DataDrivenTestCase', () => {
             const vehicleRegistration = regoPage.clickGetStartedButton()
             vehicleRegistration.getFormTitle().should('have.text', 'Enter vehicle details')

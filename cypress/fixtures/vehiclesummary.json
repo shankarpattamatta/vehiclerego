@@ -1,0 +1,14 @@
+[
+   {
+     "vtype": "Car/truck",
+     "vtype_regoNumber": "1EZ4TE"
+    } ,
+    {
+        "vtype": "Motorcycle",
+        "vtype_regoNumber": "1EZ4TA"
+    } ,
+    {
+        "vtype": "Caravan/trailer",
+        "vtype_regoNumber": "1EZ4TB"
+   }
+]

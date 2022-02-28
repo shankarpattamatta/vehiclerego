@@ -10,4 +10,4 @@
 
  }
 
- module.exports= new VehicleReview()
+ export default new VehicleReview()

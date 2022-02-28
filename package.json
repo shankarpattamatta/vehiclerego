@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run -- --record --spec ./integration/tests/vehicleregospec.js"
   },
   "keywords": [],
   "author": "",

@@ -31,7 +31,13 @@ class VehicleRegistration{
   }
 
    clickContinueButton=()=>{
-        cy.get('button[type="submit"]').click()
+    cy.intercept({
+        method: 'POST',
+        url: '/data/forms/check-registration/vehicle',
+      }).as('FindVehicleRego')
+        cy.get('button[type="submit"]').click({timeout:6*1000})//Never use Explicit waits insted use waits on aliases.
+        cy.wait('@FindVehicleRego')
+        
         return vehicleReview;
    }
 

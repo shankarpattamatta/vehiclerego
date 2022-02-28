@@ -21,6 +21,7 @@ describe('TS01_VehicleRegistrationPage', () => {
             .should('contain.text', 'Check the Victorian registration details')  //Assertions are created using should that'd appear in logging.
     })
 
+       
     it('TC02_ValidateGetStartedButton', () => {
         const vehicleRegistration = regoPage.clickGetStartedButton()
         vehicleRegistration.getFormTitle().should('have.text', 'Enter vehicle details')
@@ -33,7 +34,7 @@ describe('TS01_VehicleRegistrationPage', () => {
         vehicleRegistration.getFormTitle().should('have.text', 'Enter vehicle details')
         vehicleRegistration.setVehicleType(testdata.vtype1)                            //The test data can be used in a similar way
         vehicleRegistration.setVehicleRegoNumber(testdata.vtype1_regoNumber)
-        const vehicleReview = vehicleRegistration.clickContinueButton();
+        const vehicleReview = vehicleRegistration.clickContinueButton()
         vehicleReview.getURL().should('contain', '/check-registration/vehicle/Review')
     })
 
